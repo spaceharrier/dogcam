@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+# This is a modestly modified version of Adafruit code here:
+#    https://learn.adafruit.com/adafruits-raspberry-pi-lesson-12-sensing-movement/software
+
+# Takes a comulative count of seconds per minute in which movement is detected by the sensor
+# and writes that to an RRD database (which must already be configured to accept the data)
+
 import time 
 import os
 import RPi.GPIO as io 
