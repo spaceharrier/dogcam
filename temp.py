@@ -1,5 +1,14 @@
 #!/usr/bin/python
+
 # Use DHT temp/humidity sensor to read t/h, use CharLCD to display it 
+# Short script, but a few things packed in here (hey, it's a hack)
+#   - reads temp and humidity (sensor library supplies Celsius for temp)
+#   - calculates Fahrenheit temp from Celsius
+#   - records temperatures to separate rrd databases for each unit (must exist already)
+#   - Writes out text fragments of current conditions for use in webcam overlay/pages
+#   - Displays values and timestamp on an attached Adafruit 18x2 RGB LCD
+#	- Color varies by temp
+
 import math
 import time
 import datetime
