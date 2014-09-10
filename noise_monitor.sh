@@ -2,6 +2,13 @@
 
 # Monitor RRD DB and restart upstream process if updates stop
 
+# Bash script which starts a process, monitors a file's mtime for updates
+# and restarts that process if monitored file goes too long between updates
+
+# Written as a wrapper to noise_monitor.py because that script had a tendency to silently hang
+# Could easily be used to wrap any command which is expected to cause a given file to be
+# updated on some interval
+
 COMMAND="/home/pi/noise_monitor.py"
 DB_FILE="/var/rrd/noise.rrd"
 THRESHOLD=100
