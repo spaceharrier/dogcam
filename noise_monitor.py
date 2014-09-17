@@ -1,14 +1,5 @@
 #!/usr/bin/python
 
-# Attempt basic noise detection using attached webcam
-# Requires PyAudio, borrowed the initial PyAudio setup code from Yu-Jie Lin's code here:
-#     https://code.google.com/p/yjl/source/browse/Python/snippet/cap-vol-meter.PyAudio.py?r=50f8ee7e3af595bdf12d0852d2306fed2ebf46da
-
-# Iterates against pyaudio stream grabbing the max value in each case, which amounts to a few times a secon
-# Computes RMS of those values to decide if a second is "noisy", which is a comparison to the value of THRESHOLD
-# Counts the number of noisy seconds per minute, writes them to an RRD database (which must already be configured)
-
-
 from sys import byteorder
 from array import array
 from struct import pack
@@ -26,7 +17,7 @@ from os import system
 THRESHOLD = 6000
 CHUNK_SIZE = 2048 
 FORMAT = pyaudio.paInt16
-RATE = 48000 
+RATE = 32000 
 
 def qmean(num):
     " Calculate Root Mean Square of array "
@@ -41,7 +32,7 @@ def monitor():
     p = pyaudio.PyAudio()
     stream = p.open(
                format=FORMAT, 
-               channels=1, 
+               channels=2, 
                rate=RATE,
                input=True, 
                input_device_index=2,
